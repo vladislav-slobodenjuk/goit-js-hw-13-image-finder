@@ -1,4 +1,16 @@
-<ul class='gallery'>
+<ul class='gallery__list'>
+  {{#each this}}
+    <li class='search-result__item'>
+      <a class="gallery__link" href="{{}}">
+        <img 
+        class="gallery__image"
+        src="{{}}" 
+        alt="{{}}"
+        />
+      </a>
+    </li>
+  {{/each}}
+  {{! нужно добавить ссылки }}
   <!-- Список <li> с карточками изображений -->
 </ul>
 
