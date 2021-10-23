@@ -1,0 +1,39 @@
+<div class='photo-card'>
+  <img src='' alt='' />
+
+  <div class='stats'>
+    <p class='stats-item'>
+      <i class='material-icons'>thumb_up</i>
+      1108
+    </p>
+    <p class='stats-item'>
+      <i class='material-icons'>visibility</i>
+      320321
+    </p>
+    <p class='stats-item'>
+      <i class='material-icons'>comment</i>
+      129
+    </p>
+    <p class='stats-item'>
+      <i class='material-icons'>cloud_download</i>
+      176019
+    </p>
+  </div>
+</div>
+
+{{#each this}}
+  <div class='country__data'>
+    <h1>{{name}}</h1>
+    <p class='country__capital'>Capital: {{capital}}</p>
+    <p class='country__population'>Population: {{population}}</p>
+    <p>Languages</p>
+    <ul class='country__languages-list'>
+      {{#each languages}}
+        <li class='country__language'>{{this.name}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  <div class='country__flag'>
+    <img src={{flag}} alt={{name}} height='150' />
+  </div>
+{{/each}}
