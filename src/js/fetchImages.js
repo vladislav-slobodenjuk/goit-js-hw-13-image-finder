@@ -38,8 +38,7 @@ export default class PixabayImageAPI {
       const response = await fetch(url);
       const responseJson = await response.json(); // с этим await магия, почему без него не работатает?
 
-      console.log(responseJson.hits);
-
+      // console.log(responseJson.hits);
       return responseJson.hits;
     } catch (error) {
       console.dir(error);

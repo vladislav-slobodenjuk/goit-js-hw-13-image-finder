@@ -1,9 +1,34 @@
-<ul class='gallery__list'>
-  {{#each this}}
-    <li class='search-result__item'>
-      <a class='gallery__link' href='{{largeImageURL}}'>
-        <img class='gallery__image' src='{{webformatURL}}' alt='{{id}}' />
+{{#each this}}
+  <li class='gallery__item'>
+    <div class='photo-card'>
+
+      <a class='photo-card__link' href='{{largeImageURL}}'>
+        <img
+          class='photo-card__image'
+          src='{{webformatURL}}'
+          alt='img-id:{{id}}'
+        />
       </a>
-    </li>
-  {{/each}}
-</ul>
+
+      <div class='stats'>
+        <p class='stats__item'>
+          <i class='material-icons'>thumb_up</i>
+          {{likes}}
+        </p>
+        <p class='stats__item'>
+          <i class='material-icons'>visibility</i>
+          {{views}}
+        </p>
+        <p class='stats__item'>
+          <i class='material-icons'>comment</i>
+          {{comments}}
+        </p>
+        <p class='stats__item'>
+          <i class='material-icons'>cloud_download</i>
+          {{downloads}}
+        </p>
+      </div>
+
+    </div>
+  </li>
+{{/each}}
