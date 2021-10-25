@@ -19,19 +19,23 @@
   <body>
     <section>
       <div class="container">
-        <form class="search-form" id="search-form">
-          <input
-            type="text"
-            name="searchQuery"
-            autocomplete="off"
-            placeholder="Search images..."
-          />
-          <button type="submit">Search</button>
-        </form>
-        <ul class="gallery">
+        <div class="search">
+          <form class="search-form" id="search-form">
+            <input
+              type="text"
+              name="searchQuery"
+              autocomplete="off"
+              placeholder="Search images..."
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+        <ul class="gallery list">
           <!-- Карточки изображений -->
         </ul>
-        <button type="button" class="load-more">Load more</button>
+        <button type="button" class="load-more visually-hidden">
+          Load more
+        </button>
         <div id="scroll-to"></div>
       </div>
     </section>

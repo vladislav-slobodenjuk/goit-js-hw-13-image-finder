@@ -1,4 +1,3 @@
-// import './sass/main.scss';
+import './sass/main.scss';
 
-import './js/fetchImages';
-import './js/apiService';
+import './js/imageSearch';

@@ -1,73 +1,47 @@
-import Pix from './fetchImages';
-import renderGallery from '../templates/gallery.handlebars';
-
-const form = document.getElementById('search-form');
-const gallery = document.querySelector('.gallery');
-const loadBtn = document.querySelector('.load-more');
-
-const pixabay = new Pix();
-
-// console.log(pixabay.fetchImages().then(result => renderGallery(result))); //работатет
-
-pixabay.fetchImages().then(result => {
-  // console.log(renderGallery(result));
-  // gallery.insertAdjacentHTML('beforeend', renderGallery(result)); //работает
-});
-
-form.addEventListener('submit', renderResult);
-
-async function renderResult(evt) {
-  evt.preventDefault();
-  // console.log(evt);
-
-  pixabay.query = evt.target.searchQuery.value; //обратиться к инпуту внутри формы можно только по имени
-
-  try {
-    if (pixabay.query.trim() === '') {
-      //сделать уведомление
-      throw new Error('Enter search query');
-    }
-
-    let result = await pixabay.fetchImages();
-    if (result.length === 0) {
-      //сделать уведомление
-      throw new Error('Empty search result');
-    }
-
-    gallery.innerHTML = '';
-    gallery.insertAdjacentHTML('beforeend', renderGallery(result));
-    // console.log(result);
-    form.reset();
-  } catch (error) {
-    console.log(error);
+export default class PixabayImageAPI {
+  constructor() {
+    this.BASE_URL = 'https://pixabay.com/api/';
+    this.API_KEY = '24000598-4cbb5e18617bf8e66757f824b';
+    this._type = 'photo';
+    this._orientation = 'horizontal';
+    this._query = '';
+    this._page = 1;
+    this._perPage = 12;
   }
-}
 
-loadBtn.addEventListener('click', loadNextPage);
-
-async function loadNextPage() {
-  pixabay.page += 1;
-  try {
-    if (pixabay.query.trim() === '') {
-      //сделать уведомление
-      throw new Error('Enter search query');
-    }
-    let result = await pixabay.fetchImages();
-    gallery.insertAdjacentHTML('beforeend', renderGallery(result));
-  } catch (error) {
-    console.log('fetch error:', error);
+  get query() {
+    return this._query;
   }
-}
 
-// неработает скрол
-const scrollTo = document.getElementById('scroll-to');
-console.log(scrollTo);
+  set query(value) {
+    return (this._query = value);
+  }
 
-loadBtn.addEventListener('click', scrollToNew);
+  get page() {
+    return this._page;
+  }
 
-function scrollToNew() {
-  scrollTo.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
+  set page(value) {
+    return (this._page = value);
+    // над этим поработать
+  }
+
+  resetPage() {
+    this._page = 1;
+  }
+
+  async fetchImages() {
+    let params = `?key=${this.API_KEY}&q=${this._query}&image_type=${this._type}&orientation=${this._orientation}&page=${this._page}&per_page=${this._perPage}`;
+    let url = this.BASE_URL + params;
+    // console.log(url);
+    try {
+      const response = await fetch(url);
+      const responseJson = await response.json(); // с этим await магия, почему без него не работатает?
+
+      // console.log(responseJson.hits);
+      return responseJson.hits;
+    } catch (error) {
+      console.dir(error);
+    }
+  }
 }
