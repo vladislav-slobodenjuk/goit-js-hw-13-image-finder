@@ -25,7 +25,7 @@ async function renderResult(evt) {
     if (pixabay.query.trim() === '') {
       //сделать уведомление
 
-      Notiflix.Notify.failure('Enter search query');
+      Notiflix.Notify.failure('Enter something to search');
       throw new Error('Enter search query');
     }
 
@@ -33,7 +33,7 @@ async function renderResult(evt) {
     if (result.hits.length === 0) {
       //сделать уведомление
 
-      Notiflix.Notify.warning('Empty search result');
+      Notiflix.Notify.warning('Nothig found :(');
       form.reset();
       throw new Error('Empty search result');
     }
@@ -47,7 +47,7 @@ async function renderResult(evt) {
 
     form.reset();
     loadBtn.classList.remove('visually-hidden');
-    Notiflix.Notify.info(`Images found`); // не удается передать totalFound
+    Notiflix.Notify.info(`Hooray! We've found some`); // не удается передать totalFound
   } catch (error) {
     console.log(error);
   }
