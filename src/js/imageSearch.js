@@ -82,7 +82,10 @@ const top = document.getElementById('scroll-to-top');
 
 form.addEventListener('submit', scrollToTop);
 
-function scrollToTop() {
+function scrollToTop(evt) {
+  if (evt.target.searchQuery.value.trim() === '') {
+    return;
+  }
   setTimeout(() => {
     top.scrollIntoView({
       behavior: 'smooth',
