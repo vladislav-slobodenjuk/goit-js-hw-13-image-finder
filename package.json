@@ -29,7 +29,7 @@
   "dependencies": {
     "gh-pages": "^3.2.3",
     "handlebars": "^4.7.7",
-    "lodash.debounce": "^4.0.8",
+    "notiflix": "^3.1.0",
     "simplelightbox": "^2.9.0"
   }
 }

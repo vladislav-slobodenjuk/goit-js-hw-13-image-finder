@@ -23,7 +23,6 @@ export default class PixabayImageAPI {
 
   set page(value) {
     return (this._page = value);
-    // над этим поработать
   }
 
   resetPage() {
@@ -38,8 +37,8 @@ export default class PixabayImageAPI {
       const response = await fetch(url);
       const responseJson = await response.json(); // с этим await магия, почему без него не работатает?
 
-      // console.log(responseJson.hits);
-      return responseJson.hits;
+      console.log(responseJson);
+      return responseJson;
     } catch (error) {
       console.dir(error);
     }
