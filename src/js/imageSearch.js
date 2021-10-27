@@ -60,15 +60,28 @@ async function loadNextPage() {
   }
 }
 
-// неработает скрол
-const scrollTo = document.getElementById('scroll-to');
-// console.log(scrollTo);
+const bottom = document.getElementById('scroll-to-bottom');
 
 loadBtn.addEventListener('click', scrollToNew);
 
 function scrollToNew() {
-  scrollTo.scrollIntoView({
-    behavior: 'smooth',
-    block: 'end',
-  });
+  setTimeout(() => {
+    bottom.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, 600);
+}
+
+const top = document.getElementById('scroll-to-top');
+
+form.addEventListener('submit', scrollToTop);
+
+function scrollToTop() {
+  setTimeout(() => {
+    top.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }, 600);
 }
